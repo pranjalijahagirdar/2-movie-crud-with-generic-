@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movie crud(with generic)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="index.html">
+                    <img src="./assets/images/logo.svg" alt="logo">
+                </a>
+            </div>
+            <div class="col-md-6 text-right">
+                <button id="addMovie" class="btn btn-sm net-pri-btn">Add Movie</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-4" id="movieContainer">
+            <!-- <div class="col-md-3 mb-3">
+                <div class="card movieCard">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h3 id="title" class="m-0">dhamal</h3>
+                                <small class="text-right pr-3">Updated at : 02/03/2005</small>
+                            </div>
+                            <div class="col-2">
+                                <h5 class="m-0"><span class="badge badge-success">6</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body py-0">
+                        <figure class="m-0">
+                            <img src="https://m.media-amazon.com/images/S/pv-target-images/3028aff09398ecc49b7cbf7ca513a215c2f27239c835cce7a8a8dbb8f6e0372f.jpg" title="Dhamal" alt="movie">
+                            <figcaption>
+                                <h5>dhamal</h5>
+                                <h4>Genere: Sci-Fic</h4>
+                                <p>wrtguvfrdfcgcfgfghvhgcgcgvcgvgvggghggfgfg</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-sm net-sec-btn" type="button">EDIT</button>
+                        <button class="btn btn-sm net-pri-btn" type="button">Remove</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="backDrop formClose" id="backDrop"></div>
+<form id="movieForm">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5  id="movieFormTitle">Add Movie</h5>
+            <i class="fa-solid fa-xmark formClose"
+                id="closeForm"
+                role="button"></i>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="title">
+                    Movie Title
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label for="poster">
+                    Poster
+                </label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="poster"
+                >
+            </div>
+            <div class="form-group">
+                <label for="description">
+                    Description
+                </label>
+                <textarea
+                    class="form-control"
+                    rows="4"
+                    id="description">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label for="rating">
+                    Rating
+                </label>
+                <select
+                    class="form-control"
+                    id="rating" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="genre">
+                    Genre
+                </label>
+                <select
+                    class="form-control"
+                    id="genre" required>
+
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Emotional">Emotional</option>
+                    <option value=""></option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+
+                </select>
+            </div>
+        </div> 
+        <div class="card-footer d-flex justify-content-between">
+            <button
+                type="submit"
+                id="movieAddbtn"
+                class="btn btn-sm net-sec-btn">
+                Add Movie
+            </button>
+            <button
+                type="button"
+                id="UpdatemovieBtn"
+                class="btn btn-sm net-sec-btn d-none">
+                Update Movie
+            </button>
+            <button
+                type="button"
+                class="btn btn-sm net-pri-btn formClose">
+                Cancel
+            </button>
+</div>
+        </div>
+        </form>
+
+   <div class="spinner d-none" id="spinner">
+    <div class="spinner-border text-info" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+   </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
