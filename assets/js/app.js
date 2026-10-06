@@ -160,7 +160,7 @@ function onAddMovie(eve){
         poster:poster.value,
         rating:rating.value,
         description:description.value,
-        createdAt:new Date(),
+        // createdAt:new Date(),
         updatedAt:new Date()
     }
     showSpinner()
@@ -168,10 +168,10 @@ function onAddMovie(eve){
     .then(res=>{
         movieObj.id = res.name,
         state.moviesArr.unshift(movieObj)
-        let newMovie = document.createElement('div')
-        newMovie.className = "col-md-3 mb-3"
-        newMovie.id = movieObj.id
-        newMovie.innerHTML = `<div class="card movieCard h-100">
+        let Movie = document.createElement('div')
+        Movie.className = "col-md-3 mb-3"
+        Movie.id = movieObj.id
+        Movie.innerHTML = `<div class="card movieCard h-100">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-10">
@@ -216,7 +216,7 @@ function onAddMovie(eve){
                 </div>
             </div>`
 
-            movieContainer.prepend(newMovie);
+            movieContainer.prepend(Movie);
             movieForm.reset()
             movieForm.classList.remove('active')
             backDrop.classList.remove('active')
@@ -274,12 +274,11 @@ function onUpdate(){
         description:description.value,
         rating:rating.value,
         genre:genre.value,
-        createdAt: oldObj.createdAt,
         updatedAt:new Date(),
         id:UPDATE_ID
     }
     showSpinner()
-    makeapicall(UPDATE_URL,"PATCH",updateObj)
+    makeapicall(UPDATE_URL, "PATCH", updateObj)
     .then(res =>{
         cl(res)
         let getIndex = state.moviesArr.findIndex(i=> i.id === UPDATE_ID)
@@ -350,7 +349,7 @@ function onUpdate(){
 //delete
 
 function DeleteMovie(ele){
-    let removeId = ele.closest('.col-md-3').id
+    let REMOVE_ID = ele.closest('.col-md-3').id
     Swal.fire({
   title: "Are you sure?",
   icon: "warning",
@@ -359,10 +358,10 @@ function DeleteMovie(ele){
 }).then((result) => {
   if (result.isConfirmed) {
     showSpinner()
-    let REMOVE_URL = `${BASE_URL}/movies/${removeId}.json`;
+    let REMOVE_URL = `${BASE_URL}/movies/${REMOVE_ID}.json`;
     makeapicall(REMOVE_URL,"DELETE")
     .then(res => {
-        let getIndex = state.moviesArr.findIndex(m=>m.id === removeId)
+        let getIndex = state.moviesArr.findIndex(m=>m.id === REMOVE_ID)
         state.moviesArr.splice(getIndex,1)
         ele.closest('.col-md-3').remove()
         snackbar(`The movie is removed successfully !!`,'success')
